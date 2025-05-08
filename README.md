@@ -6,10 +6,10 @@ Este repositorio proporciona una solución completamente gratuita para integrar 
 
 ## Características principales
 
-* **Contenedores Docker**: Odoo 14 y Asterisk 20.Todo orquestado con Docker Compose.
-* **FastAGI y AMI**: Sincronización bidireccional de llamadas entre Asterisk y Odoo.
+* **Contenedores Docker**: Odoo 14 y Asterisk 20.11.0 .Todo orquestado con Docker Compose.
+* **FastAGI, AMI y ARI**: Sincronización bidireccional de llamadas entre Asterisk y Odoo.
 * **PJSIP**: Gestión avanzada de agentes y proveedores VoIP externos.
-* **Módulos Odoo**: Incluye `asterisk_click2dial` y `base_phone_popup`.
+* **Módulos Odoo**: Incluye `asterisk_click2dial` , `base_phone` y `connector-telephony-14.0`.
 * **Monitorización en tiempo real**: Métricas de colas, duración de llamadas y tiempos de espera.
 
 ## Requisitos
@@ -23,34 +23,34 @@ Este repositorio proporciona una solución completamente gratuita para integrar 
 1. **Clonar el repositorio**
 
    ```bash
-   git clone https://github.com/tu-usuario/odoo-asterisk-callcenter.git
-   cd odoo-asterisk-callcenter
+   git clone https://github.com/i22prpaj/Call-Center.git
+   cd Call-Center
    ```
 2. **Configurar credenciales**
    Edita `docker-compose.yml` para incluir tus valores de base de datos, AMI y SIP.
 3. **Arrancar el entorno**
 
    ```bash
-   chmod +x odoo-uco.sh
-   ./odoo-uco.sh
+   chmod u+x odoo-uco.sh
+   ./odoo-uco.sh -start
    ```
 
    *o bien*
 
    ```bash
-   docker-compose up -d --build
+   docker-compose -f config\docker-compose.yml up -d
    ```
 
 ## Uso
 
 * Accede a la interfaz web de Odoo en `http://localhost:8069`.
-* Credenciales por defecto: **admin / admin** (ajustables en `odoo.conf`).
+* Credenciales por defecto: **admin / admin** (ajustables en fichero`.env`).
 * Activa el **Modo desarrollador** en Odoo y actualiza la lista de aplicaciones.
-* Instala los módulos: **Asterisk Click2Dial** y **Base Phone Popup**.
+* Instala los módulos: **Asterisk Click2Dial** y **Base Phone**.
 * Configura en Odoo:
 
-  1. **Telecomunicaciones → Servidores Asterisk**
-  2. **Usuarios → Telecomunicaciones** (asignar extensiones SIP).
+  1. **Technical → Asterisk servers**
+  2. **Users & Companies → Users → Telephony** (asignar extensiones SIP).
 
 ## Contribución
 
