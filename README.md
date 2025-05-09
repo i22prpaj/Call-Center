@@ -38,6 +38,7 @@ Este repositorio proporciona una solución completamente gratuita para integrar 
    *o bien*
 
    ```bash
+   sudo apt install docker-compose
    docker-compose -f config\docker-compose.yml up -d
    ```
 
