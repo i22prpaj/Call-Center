@@ -24,7 +24,7 @@ Este repositorio proporciona una solución completamente gratuita para integrar 
 
    ```bash
    git clone https://github.com/i22prpaj/Call-Center.git
-   cd Call-Center
+   cd Call-Center/call_center-odoo
    ```
 2. **Configurar credenciales**
    Edita `docker-compose.yml` para incluir tus valores de base de datos, AMI y SIP.
