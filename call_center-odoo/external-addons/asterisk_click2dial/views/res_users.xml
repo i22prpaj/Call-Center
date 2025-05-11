@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-  Copyright 2010-2021 Akretion France (http://www.akretion.com/)
-  @author: Alexis de Lattre <alexis.delattre@akretion.com>
-  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+ Copyright 2010-2021 Akretion France (http://www.akretion.com/)
+ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 <odoo>
+    <record id="view_agent_form" model="ir.ui.view">
+        <field name="name">agent.form</field>
+        <field name="model">agent</field>
+        <field name="arch" type="xml">
+            <form string="Agent">
+                <header>
+                    <button name="set_state_available" type="object" string="Available" states="busy,on_call,offline"/>
+class Agent(models.Model):
+    _name = 'agent'
+    _description = 'Agent'
+
+    name = fields.Char(string='Name')
+    state = fields.Selection([
+        ('available', 'Available'),
+        ('busy', 'Busy'),
+        ('on_call', 'On Call'),
+        ('offline', 'Offline')
+    ], string='State', default='available')
+
+    @api.multi
+    def set_state_available(self):
+        self.state = 'available'
+
+    @api.multi
+    def set_state_busy(self):
+        self.state = 'busy'
+           <button name="set_state_busy" type="object" string="Busy" states="available,on_call,offline"/>
+                    <button name="set_state_on_call" type="object" string="On Call" states="available,busy,offline"/>
+                    <button name="set_state_offline" type="object" string="Offline" states="available,busy,on_call"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
 
 
 <record id="view_users_form" model="ir.ui.view">
