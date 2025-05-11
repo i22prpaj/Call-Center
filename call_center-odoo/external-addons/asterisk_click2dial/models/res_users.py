@@ -5,9 +5,31 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-
 class ResUsers(models.Model):
     _inherit = "res.users"
+
+    agent_state = fields.Selection([
+        ('available', 'Available'),
+        ('busy', 'Busy'),
+        ('on_call', 'On Call'),
+        ('offline', 'Offline')
+    ], string='Agent State', default='available')
+
+    @api.multi
+    def set_agent_state_available(self):
+        self.agent_state = 'available'
+
+    @api.multi
+    def set_agent_state_busy(self):
+        self.agent_state = 'busy'
+
+    @api.multi
+    def set_agent_state_on_call(self):
+        self.agent_state = 'on_call'
+
+    @api.multi
+    def set_agent_state_offline(self):
+        self.agent_state = 'offline'
 
     internal_number = fields.Char(
         string="Internal Number", copy=False, help="User's internal phone number."
