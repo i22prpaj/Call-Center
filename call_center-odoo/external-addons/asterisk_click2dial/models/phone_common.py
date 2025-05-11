@@ -12,35 +12,6 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 TIMEOUT = 10
 
-class Agent(models.Model):
-    _name = 'agent'
-    _description = 'Agent'
-
-    name = fields.Char(string='Name')
-    state = fields.Selection([
-        ('available', 'Available'),
-        ('busy', 'Busy'),
-        ('on_call', 'On Call'),
-        ('offline', 'Offline')
-    ], string='State', default='available')
-
-    @api.multi
-    def set_state_available(self):
-        self.state = 'available'
-
-    @api.multi
-    def set_state_busy(self):
-        self.state = 'busy'
-
-    @api.multi
-    def set_state_on_call(self):
-        self.state = 'on_call'
-
-    @api.multi
-    def set_state_offline(self):
-        self.state = 'offline'
-
-
 
 class PhoneCommon(models.AbstractModel):
     _inherit = "phone.common"
