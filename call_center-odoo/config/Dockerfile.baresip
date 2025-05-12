@@ -1,0 +1,16 @@
+# Dockerfile.baresip
+FROM debian:bookworm-slim
+
+# Instala dependencias necesarias
+RUN apt-get update && \
+    apt-get install -y baresip alsa-utils && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Crea el directorio de configuración
+RUN mkdir -p /root/.baresip
+
+# Establece directorio de trabajo
+WORKDIR /root
+
+# Comando por defecto al arrancar
+CMD ["baresip", "-f", "/root/.baresip/config"]
